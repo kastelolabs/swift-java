@@ -6,14 +6,14 @@ let package = Package(
     name: "Java",
     products:[
         .library(
-            name: "Java", 
+            name: "Java",
             targets:["Java"]
         )
     ],
     dependencies: [
         // TODO: remove coder and java_swift dependencies
-        .package(url: "https://github.com/readdle/swift-java-coder.git", .upToNextMinor(from: "1.0.7")),
-        .package(url: "https://github.com/readdle/java_swift.git", .upToNextMinor(from: "2.1.4")),
+        .package(url: "../swift-java-coder", .branch("swift5")),
+        .package(url: "https://github.com/readdle/java_swift.git", .branch("swift5")),
     ],
     targets: [
         .target(
