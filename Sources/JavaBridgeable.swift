@@ -3,7 +3,7 @@ import java_swift
 import JavaCoder
 
 public protocol JavaBridgeable: Codable {
-    
+
     static func from(javaObject: jobject) throws -> Self
 
     func javaObject() throws -> jobject
@@ -22,7 +22,7 @@ extension JavaBridgeable {
         // ignore forPackage for basic impl
         return try JavaEncoder(forPackage: "").encode(self)
     }
-    
+
 }
 
 extension Bool: JavaBridgeable {}
@@ -38,9 +38,9 @@ extension UInt32: JavaBridgeable {}
 extension UInt64: JavaBridgeable {}
 extension Float: JavaBridgeable {}
 extension Double: JavaBridgeable {}
-extension Array: JavaBridgeable {}
-extension Dictionary: JavaBridgeable {}
-extension Set: JavaBridgeable {}
+extension Array: JavaBridgeable where Element: Codable {}
+extension Dictionary: JavaBridgeable where Key: Codable, Value: Codable {}
+extension Set: JavaBridgeable where Element: Codable {}
 extension Date: JavaBridgeable {}
 extension Data: JavaBridgeable {}
 extension URL: JavaBridgeable {}
@@ -118,7 +118,7 @@ extension Error {
 
     public func javaObject() throws -> jobject {
         let message: String
-        if let nsError = self as? NSError {
+        if let nsError = self as NSError {
             message = "\(nsError.domain):\(nsError.code)"
         }
         else {
