@@ -13,7 +13,7 @@ let package = Package(
     dependencies: [
         // TODO: remove coder and java_swift dependencies
         .package(url: "../swift-java-coder", .branch("swift5")),
-        .package(url: "https://github.com/readdle/java_swift.git", .branch("swift5")),
+        .package(url: "https://github.com/readdle/java_swift.git", .branch("master")),
     ],
     targets: [
         .target(
